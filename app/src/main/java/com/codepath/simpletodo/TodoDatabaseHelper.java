@@ -90,7 +90,7 @@ public class TodoDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         try {
-            int ret = db.delete(TABLE_TODO, KEY_TODO_TEXT + "='" + str, null);
+            int ret = db.delete(TABLE_TODO, KEY_TODO_TEXT + "=" + str, null);
             Log.e(TAG, "deleteTodo for: " + str + ", ret = " + ret);
         } catch(Exception ex) {
             Log.e(TAG, "Exception while deleting: ", ex);
