@@ -32,7 +32,5 @@
         android:id="@+id/saveButton"
         android:onClick="onSubmit"
         android:layout_below="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:layout_marginTop="32dp"
-        android:layout_toStartOf="@+id/textView" />
+        android:layout_alignStart="@+id/editText" />
 </RelativeLayout>
