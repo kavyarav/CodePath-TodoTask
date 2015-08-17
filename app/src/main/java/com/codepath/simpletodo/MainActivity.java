@@ -47,10 +47,9 @@ public class MainActivity extends Activity {
     public void onAddItem(View v) {
         EditText editText = (EditText) findViewById(R.id.etNewItem);
         String text=editText.getText().toString();
-        if(text != null && !text.equals("")) {
+        if(text != null && !text.equals("") && !items.contains(text)) {
             itemsAdapter.add(text);
             editText.setText("");
-            //writeItems();
             writeItemsDb(text);
         }
     }
@@ -62,8 +61,6 @@ public class MainActivity extends Activity {
                 String str = items.get(pos);
                 items.remove(pos);
                 itemsAdapter.notifyDataSetChanged();
-                //writeItems();
-                //writeItemsDb();
                 removeItemsDb(str);
                 return true;
             }
@@ -95,10 +92,7 @@ public class MainActivity extends Activity {
     }
     //Re-insert all the elements into db.
     private void writeItemsDb(String str) {
-        //mTodoDbHelper.deleteAllTodos();
-        //for(String str: items) {
-            mTodoDbHelper.addTodo(str);
-        //}
+        mTodoDbHelper.addTodo(str);
     }
 
     private void readItems() {
@@ -143,13 +137,12 @@ public class MainActivity extends Activity {
             // Extract name value from result extras
             String name = data.getExtras().getString("name");
             int pos = data.getExtras().getInt("pos",0);
-            if(name != null && !name.equals("")) {
+            if(name != null && !name.equals("") && !items.contains(name)) {
                 Log.e("MainActivity", "KRS: new name = " + name);
                 String oldStr = items.get(pos);
                 items.remove(pos);
                 items.add(pos, name);
                 itemsAdapter.notifyDataSetChanged();
-                //writeItems();
                 removeItemsDb(oldStr);
                 writeItemsDb(name);
             }

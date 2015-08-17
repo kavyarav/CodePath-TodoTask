@@ -75,7 +75,7 @@ public class TodoDatabaseHelper extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put(KEY_TODO_TEXT, todo);
 
-            db.insertOrThrow(TABLE_TODO, null, cv);
+            long ret = db.insertOrThrow(TABLE_TODO, null, cv);
             db.setTransactionSuccessful();
         } catch(Exception ex) {
             Log.d("TodoDatabaseHelper", "Error while adding to todo db");
@@ -90,7 +90,8 @@ public class TodoDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         try {
-            int ret = db.delete(TABLE_TODO, KEY_TODO_TEXT + "=" + str, null);
+            int ret = db.delete(TABLE_TODO, KEY_TODO_TEXT + "='" + str + "'", null);
+            db.setTransactionSuccessful();
             Log.e(TAG, "deleteTodo for: " + str + ", ret = " + ret);
         } catch(Exception ex) {
             Log.e(TAG, "Exception while deleting: ", ex);
