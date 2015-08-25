@@ -16,6 +16,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="76dp" />
 
+    <ImageButton
+        android:id="@+id/alarmBtnSubList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/editText"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="72dp"
+        android:onClick="onAddAlarmEdit"
+    android:background="@android:drawable/ic_media_play"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
